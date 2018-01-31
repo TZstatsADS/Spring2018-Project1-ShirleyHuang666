@@ -1,5 +1,5 @@
 # Spring 2018
-# Project 1: What did the presidents say at their inauguation?
+# Project 1: What did the presidents say at their inauguration?
 
 ![image](figs/title.jpg)
 
@@ -8,10 +8,10 @@ This is the first and only *individual* (as opposed to *team*) this semester.
 
 Term: Spring 2018
 
-+ Projec title: Lorem ipsum dolor sit amet
-+ This project is conducted by [your name]
++ Project title: Analysis of presidential inaugural speeches - based on Party
++ This project is conducted by Yuexuan(Shirley) Huang
 
-+ Project summary: [a short summary] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: Inaugural speech is not only the the first official speech of any president of United States, but also reflects the personality, sentiment, interested topics for the next few years and so on. The following analysis mainly focus on the difference of inaugural speeches between Democratic Party and Republican Party(part 1). Then, we compare the inaugural speeches of DonaldJTrump and BarackObama(part 2).
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 

@@ -1,14 +1,13 @@
 ---
 title: "Analysis of presidential inaugural speeches - based on Party"
 output: html_notebook
-    toc: true
-    toc_depth: 2
 ---
+
 # Introduction
 
 ### Inaugural speech is not only the the first official speech of any president of United States, but also reflects the personality, sentiment, interested topics for the next few years and so on. The following analysis mainly focus on the difference of inaugural speeches between Democratic Party and Republican Party(part 1). Then, we compare the inaugural speeches of DonaldJTrump and BarackObama(part 2).
 
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 # check and install needed packages. Load the libraries and functions. 
 
 packages.used=c("rvest", "tibble", "qdap", 
@@ -189,7 +188,7 @@ main = "Average number of words of presidents' speeches")
 
 ### According to the graph above, we can see that the average word number of Democratic presidents' speeches is about 3000. As for Republican presidents' speeches, it is about 3500. So we have the right guess.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # generate list of sentences
 
 sentence.list=NULL
@@ -515,15 +514,15 @@ ldaOut <-LDA(dtm, k, method="Gibbs", control=list(nstart=nstart,
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
 table(c(1:k, ldaOut.topics))
-write.csv(ldaOut.topics,file=paste("../out/LDAGibbs",k,"DocsToTopics.csv"))
+write.csv(ldaOut.topics,file=paste("../output/LDAGibbs",k,"DocsToTopics.csv"))
 
 #top 6 terms in each topic
 ldaOut.terms <- as.matrix(terms(ldaOut,20))
-write.csv(ldaOut.terms,file=paste("../out/LDAGibbs",k,"TopicsToTerms.csv"))
+write.csv(ldaOut.terms,file=paste("../output/LDAGibbs",k,"TopicsToTerms.csv"))
 
 #probabilities associated with each topic assignment
 topicProbabilities <- as.data.frame(ldaOut@gamma)
-write.csv(topicProbabilities,file=paste("../out/LDAGibbs",k,"TopicProbabilities.csv"))
+write.csv(topicProbabilities,file=paste("../output/LDAGibbs",k,"TopicProbabilities.csv"))
 
 terms.beta=ldaOut@beta
 terms.beta=scale(terms.beta)
@@ -533,6 +532,13 @@ for(i in 1:k){
 }
 topics.terms
 ldaOut.terms
+
+topics.hash=c("Economy", "America", "Defense", "Belief", "Election", "Patriotism", "Unity", "Government", "Reform", "Temporal", "WorkingFamilies", "Freedom", "Equality", "Misc", "Legislation")
+corpus.list$ldatopic=as.vector(ldaOut.topics)
+corpus.list$ldahash=topics.hash[ldaOut.topics]
+
+colnames(topicProbabilities)=topics.hash
+corpus.list.df=cbind(corpus.list, topicProbabilities)
 ```
 
 
@@ -584,7 +590,10 @@ names(speech.df)[-1]
 
 # Conclusion
 
-### In conclusion, from these analysis, we may find a lot of differences between the in the inaugural speech of Democratic Party and Republican Party, including the number of words, sentence distribution, emotion cluster and so on.
+### In conclusion, from these analysis, we may find a lot of differences between the inaugural speech of Democratic Party and Republican Party, including the number of words, sentence distribution, emotion cluster and so on.
 
 ### So as to DonaldJTrump from Republican Party and BarackObama from Democratic Party, they have lots of differences in their speech's pattern, like sentiment difference, topic difference and so on.
 
+# Reference
+
+### wk2-Tutorial-TextMining https://github.com/TZstatsADS/ADS_Teaching/tree/master/Tutorials/wk2-TextMining
